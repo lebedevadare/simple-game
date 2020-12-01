@@ -2,19 +2,21 @@
   <div>
 
     <div class = "container">
-    <tiles @click="onClick" ref="tiles"/>
+      <tiles @click = "onClick" ref = "tiles"/>
       <div class = "wrapper">
         <div class = "game-info">
-          <h2 class = "game-info__heading">Раунд: <span>{{round}}</span></h2>
-         <button class="game-info__button" @click="start()" :disabled="status === 'animation'">Start</button>
-          <p v-if="status === 'lost'">Извини, ты проиграл после <b>{{round}}</b> раунда!</p>
+          <h2 class = "game-info__heading">Раунд: <span>{{ round }}</span></h2>
+          <button class = "game-info__button" @click = "start()" :disabled = "status === 'animation'">Start</button>
+          <p v-if = "status === 'lost'">Извини, ты проиграл после <b>{{ round }}</b> раунда!</p>
         </div>
 
         <div class = "game-options">
           <h2 class = "game-options__header">Уровень:</h2>
-          <input  v-model="difficulty" class = "game-options__input" type = "radio" name = "mode" value = "easily" checked>Легкий<br>
-          <input  v-model="difficulty" class = "game-options__input" type = "radio" name = "mode" value = "middle">Средний<br>
-          <input  v-model="difficulty" class = "game-options__input" type = "radio" name = "mode" value = "complicated">Сложный<br>
+          <input v-model = "difficulty" class = "game-options__input" type = "radio" name = "mode" value = "easily"
+                 checked>Легкий<br>
+          <input v-model = "difficulty" class = "game-options__input" type = "radio" name = "mode" value = "middle">Средний<br>
+          <input v-model = "difficulty" class = "game-options__input" type = "radio" name = "mode"
+                 value = "complicated">Сложный<br>
         </div>
       </div>
     </div>
@@ -29,18 +31,79 @@ export default {
   components: {
     Tiles
   },
-   data() {
-      return {
-        tiles: ['red', 'blue', 'green', 'yellow'],
-        sequence: {
-          game: [],
-          round: []
-        },
-        round: 0,
-        difficulty: 'easy',
-        status: 'idle',
+  data() {
+    return {
+      tiles: ['red', 'blue', 'green', 'yellow'],
+      sequence: {
+        game: [],
+        round: []
+      },
+      round: 0,
+      difficulty: 'easy',
+      status: 'idle',
+    }
+  }, computed: {
+    animationDelay() {
+      if (this.difficulty === 'easy') {
+        return 1500
+      } else if (this.difficulty === 'medium') {
+        return 1000
+      } else {
+        return 400
       }
+    }
+  },
+  methods: {
+    start() {
+      this.status = 'idle';
+      this.sequence = {
+        game: [],
+        round: []
+      };
+      this.round = 0;
+      this.nextRound();
     },
+
+    nextRound() {
+      this.status = 'idle';
+      this.sequence.game.push(this.randomTile())
+      this.sequence.round = this.sequence.game.slice(0)
+      this.round += 1;
+      this.animate();
+    },
+
+    endGame() {
+      this.status = 'lost';
+    }, animate() {
+      this.status = 'animation'
+      this.sequence.game.forEach((tile, index) => {
+        setTimeout(() => {
+          this.$refs.tiles.lightUp(tile);
+          if (index === this.sequence.game.length - 1) {
+            this.status = 'play';
+          }
+        }, this.animationDelay * (index + 1))
+      });
+    },
+    randomTile() {
+      return this.tiles[Math.floor((Math.random() * this.tiles.length))];
+    },
+    onClick(tile) {
+      if (this.status === 'play') {
+        const correctTile = this.sequence.round.shift();
+        if (correctTile === tile) {
+          // Если все элементы были выбраны:
+          if (this.sequence.round.length === 0) {
+            this.nextRound();
+          }
+        } else {
+          this.endGame();
+        }
+      }
+    }
+  }
+
+
 }
 </script>
 
@@ -74,8 +137,8 @@ export default {
 
 .game-heading__info {
   font-size: 24px;
-    margin: 0;
-    margin-top: 30px;
+  margin: 0;
+  margin-top: 30px;
 
 }
 
