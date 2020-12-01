@@ -2,19 +2,19 @@
   <div>
 
     <div class = "container">
-      <tiles></tiles>
+    <tiles @click="onClick" ref="tiles"/>
       <div class = "wrapper">
         <div class = "game-info">
-          <h2 class = "game-info__heading">Раунд: <span>0</span></h2>
-          <button class = "game-info__button">Start</button>
-          <p data-action = "lose">Извени, ты проиграл после <span></span> раунда!</p>
+          <h2 class = "game-info__heading">Раунд: <span>{{round}}</span></h2>
+         <button class="game-info__button" @click="start()" :disabled="status === 'animation'">Start</button>
+          <p v-if="status === 'lost'">Извини, ты проиграл после <b>{{round}}</b> раунда!</p>
         </div>
 
         <div class = "game-options">
           <h2 class = "game-options__header">Уровень:</h2>
-          <input class = "game-options__input" type = "radio" name = "mode" value = "easily" checked>Легкий<br>
-          <input class = "game-options__input" type = "radio" name = "mode" value = "middle">Средний<br>
-          <input class = "game-options__input" type = "radio" name = "mode" value = "complicated">Сложный<br>
+          <input  v-model="difficulty" class = "game-options__input" type = "radio" name = "mode" value = "easily" checked>Легкий<br>
+          <input  v-model="difficulty" class = "game-options__input" type = "radio" name = "mode" value = "middle">Средний<br>
+          <input  v-model="difficulty" class = "game-options__input" type = "radio" name = "mode" value = "complicated">Сложный<br>
         </div>
       </div>
     </div>
@@ -28,7 +28,19 @@ export default {
   name: "Game",
   components: {
     Tiles
-  }
+  },
+   data() {
+      return {
+        tiles: ['red', 'blue', 'green', 'yellow'],
+        sequence: {
+          game: [],
+          round: []
+        },
+        round: 0,
+        difficulty: 'easy',
+        status: 'idle',
+      }
+    },
 }
 </script>
 
