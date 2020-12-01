@@ -32,14 +32,9 @@ ul, li {
   margin: 0;
 }
 
-
-
-
 .game-list {
   background: #fff;
   position: relative;
-  float: left;
-  margin-right: 3em;
   width: 302px;
   height: 295px;
   border-radius: 150px 150px 150px 150px;
@@ -87,8 +82,4 @@ ul, li {
   }
 }
 
-
-.game-list__tile.lit {
-  opacity: 1;
-}
 </style>
