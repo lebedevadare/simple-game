@@ -17,7 +17,7 @@
 
 
 export default {
-  name: 'GameTiles'
+  name: 'Tiles'
 }
 </script>
 

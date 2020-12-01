@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <h1>Simple-game</h1>
-   <game-body></game-body>
+   <game></game>
   </div>
 </template>
 
 <script>
-import GameBody from './components/GameBody'
+import Game from '@/components/Game'
 
 
 export default {
   name: 'App',
   components: {
-    GameBody
+    Game
   }
 }
 </script>
