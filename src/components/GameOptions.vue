@@ -56,7 +56,3 @@ font-size: 28px;
   margin-right: 10px;
 }
 </style>
-
-App
-GameBody
-GameLevel
