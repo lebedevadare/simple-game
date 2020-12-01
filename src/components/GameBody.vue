@@ -1,99 +1,23 @@
 <template>
   <div class = "container">
-    <h1>Simon Says</h1>
-      <div class = "simon">
-        <ul>
-          <li class = "tile red" data-tile = "1"></li>
-          <li class = "tile blue" data-tile = "2"></li>
-          <li class = "tile yellow" data-tile = "3"></li>
-          <li class = "tile green" data-tile = "4"></li>
-        </ul>
-      </div>
-    </div>
+
+  </div>
 </template>
 
 <script>
+import GameOptions from "@/components/GameOptions";
+import GameTiles from "@/components/GameTiles";
+
 export default {
-  name: 'GameBody',
+  name: "GameBody",
+  components: {
+    GameOptions,
+    GameTiles
+
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang = "scss">
-ul {
-	list-style: none;
-}
+<style scoped>
 
-ul, li {
-	padding: 0;
-	margin: 0;
-}
-
-
-.container {
-	width: 305px;
-}
-.simon {
-	background: #fff;
-	position: relative;
-	float: left;
-	margin-right: 3em;
-	width: 302px;
-	height: 295px;
-	-webkit-border-radius: 150px 150px 150px 150px;
-	border-radius: 150px 150px 150px 150px;
-    -moz-box-shadow: 2px 1px 12px #aaa;
-    -webkit-box-shadow: 2px 1px 12px #aaa;
-    -o-box-shadow: 2px 1px 12px #aaa;
-    box-shadow: 2px 1px 12px #aaa;
-}
-
-.tile {
-	opacity: 0.6;
-	-webkit-transition: opacity 250ms ease;
-	-moz-transition: opacity 250ms ease;
-	-ms-transition: opacity 250ms ease;
-	-o-transition: opacity 250ms ease;
-	transition: opacity 250ms ease;
-}
-
-.tile.lit {
-	opacity: 1;
-}
-
-.red, .blue, .yellow, .green {
-	height: 290px;
-	-webkit-border-radius: 150px 150px 150px 150px;
-	border-radius: 150px 150px 150px 150px;
-	position: absolute;
-	text-indent: 10000px;
-}
-
-.red:hover, .blue:hover, .yellow:hover, .green:hover {
-	border: 2px solid black
-}
-
-.red {
-	background: #FF5643;
-	clip: rect(0px, 300px, 150px, 150px);
-	width: 296px;
-}
-
-.blue {
-	background: dodgerblue;
-	clip: rect(0px, 150px, 150px, 0px);
-	width: 300px;
-}
-
-.yellow {
-	background: #FEEF33;
-	clip: rect(150px, 150px, 300px, 0px);
-	width: 300px;
-}
-
-.green {
-	background: #BEDE15;
-	clip: rect(150px,300px, 300px, 150px);
-	width: 296px;
-}
 </style>

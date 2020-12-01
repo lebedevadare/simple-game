@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <GameBody />
+    <h1>Simple-game</h1>
+   <game-body></game-body>
   </div>
 </template>
 
 <script>
-import GameBody from './components/GameBody.vue'
+import GameBody from './components/GameBody'
+
 
 export default {
   name: 'App',
