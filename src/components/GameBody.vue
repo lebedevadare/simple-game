@@ -1,6 +1,7 @@
 <template>
   <div class = "container">
-
+   <game-tiles></game-tiles>
+    <game-options></game-options>
   </div>
 </template>
 
@@ -18,6 +19,11 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.container {
+  width: 810px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 </style>

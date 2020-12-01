@@ -33,12 +33,7 @@ ul, li {
 }
 
 
-.container {
-  width: 810px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
+
 
 .game-list {
   background: #fff;
@@ -47,25 +42,15 @@ ul, li {
   margin-right: 3em;
   width: 302px;
   height: 295px;
-  -webkit-border-radius: 150px 150px 150px 150px;
   border-radius: 150px 150px 150px 150px;
-  -moz-box-shadow: 2px 1px 12px #aaa;
-  -webkit-box-shadow: 2px 1px 12px #aaa;
-  -o-box-shadow: 2px 1px 12px #aaa;
   box-shadow: 2px 1px 12px #aaa;
 
   &__tile {
     opacity: 0.6;
-    -webkit-transition: opacity 250ms ease;
-    -moz-transition: opacity 250ms ease;
-    -ms-transition: opacity 250ms ease;
-    -o-transition: opacity 250ms ease;
-    transition: opacity 250ms ease;
   }
 
   &__tile--red, &__tile--blue, &__tile--yellow, &__tile--green {
     height: 290px;
-    -webkit-border-radius: 150px 150px 150px 150px;
     border-radius: 150px 150px 150px 150px;
     position: absolute;
     text-indent: 10000px;
